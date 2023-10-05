@@ -1,45 +1,27 @@
-function medianForEvenElementList(list) {
-    const len = list.length;
-    const mid = Math.floor(len/2);
-    return (list[mid-1] + list[mid]) / 2;
+fn main() {
+    let mut v = vec![5, 4, 3, 2, 1];
+    println!("{}", median(v));
+
+    v = vec![3, 2, 1];
+    println!("{}", median(v));
+
+    v = vec![4, 3, 2, 1];
+    println!("{}", median(v));
+
+    v = vec![1, 2, 8, 6, 4, 2, 1, 2, 54, 43, 46];
+    println!("{}", median(v));
 }
 
-function medianForOddElementList(list) {
-    const len = list.length;
-    const mid = Math.floor(len/2);
-    return list[mid];
-}
 
-function median(list) {
-    const len = list.length;
-    const sortedList= list.sort((a, b) => a - b);
-    if(len % 2 === 0) {
-        return medianForEvenElementList(sortedList);
+fn median(v:Vec<i32>) -> f64 {
+    let mut list = v.to_vec();
+    list.sort();
+    let len = list.len();
+    return if len % 2 == 0 {
+        let mid = len / 2;
+        (list[mid] + list[mid - 1]) as f64 / 2.0
     } else {
-        return medianForOddElementList(sortedList);
-    }
+        list[len / 2] as f64
+    };
 }
 
-function run() {
-    let list = [2, 3, 4, 2, 1, 3, 5, 5, 23, 2, 2, 5, 2, 3];
-    let med = median(list);
-    console.log({med});
-
-    list = [3, 2, 1];
-    med = median(list);
-    console.log({med});
-
-    list = [4, 3, 2, 1];
-    med = median(list);
-    console.log({med});
-
-    list = [5, 4, 3, 2, 1];
-    med = median(list);
-    console.log({med});
-
-    list = [1, 2, 8, 6, 4, 2, 1, 2, 54, 43, 46];
-    med = median(list);
-    console.log({med});
-}
-
-run();
